@@ -6,7 +6,9 @@ import { useParams } from 'react-router-dom'
 const MoviesList = () => {
 
   const [movieList, setMovieList] = useState([])
-  const{type} = useParams()
+  const{type} = useParams();
+
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
     getData()
@@ -17,8 +19,9 @@ const MoviesList = () => {
   },[type])
 
 
+
   const getData = async() =>{
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=${API_KEY}&language=en-US`)
     const data = await res.json();
     setMovieList(data.results); 
   }
