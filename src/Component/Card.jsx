@@ -33,7 +33,7 @@ const Card = ({ele}) => {
             <div className='card_title text-sm font-bold truncate'>{ele ? ele.original_title:""}</div>
               <div className='card_runtime flex justify-between text-xs my-1'>
                 <span>{ele ? ele.release_date  : ""}</span>
-                <span className='card_rating flex items-center gap-1'>{ele? ele.vote_average:""}<i className='fas fa-star text-yellow-400'/></span>
+                <span className='card_rating flex items-center gap-1'>{ele? ele.vote_average.toFixed(1):""}<i className='fas fa-star text-yellow-400'/></span>
               </div>
               <div className='card_description text-xs leading-snug line-clamp-4'>{ele? ele.overview.slice(0,120)+"..." : ""}</div>
           </div>

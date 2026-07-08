@@ -7,9 +7,12 @@ import MoviesList from '../Component/MoviesList';
 const Home = () => {
     const [popularmovies, setpopularmovies] = useState([])
 
+    
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US");
+            const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`);
             const data = await res.json();
             setpopularmovies(data.results);
             console.log(data.results);
@@ -52,7 +55,7 @@ const Home = () => {
             </span>
             <span className="flex items-center gap-1 px-3 py-1 bg-yellow-500/20 text-yellow-300 border border-yellow-400/20 rounded-md">
                 <i className="fas fa-star" />
-                {ele?.vote_average}
+                {ele?.vote_average.toFixed(1)}
             </span>
         </div>
 

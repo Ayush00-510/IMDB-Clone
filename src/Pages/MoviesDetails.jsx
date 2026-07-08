@@ -5,13 +5,16 @@ const MoviesDetails = () => {
   const [currentMovieDetail, setMoviesDetail] = useState()
   const { id } = useParams()
 
+  
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
   useEffect(() => {
     getData()
     window.scrollTo(0, 0)
   }, [id])
 
   const getData = async () => {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`)
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
     const data = await res.json()
     setMoviesDetail(data)
   }
@@ -46,7 +49,7 @@ const MoviesDetails = () => {
             <p className="italic text-gray-400">{currentMovieDetail?.tagline}</p>
 
             <div className="flex items-center gap-2 mt-2 text-yellow-400">
-              <span className="text-xl">{currentMovieDetail?.vote_average}</span>
+              <span className="text-xl">{currentMovieDetail?.vote_average?.toFixed(1)}</span>
               <i className="fas fa-star" />
               <span className="text-sm text-gray-300">({currentMovieDetail?.vote_count} votes)</span>
             </div>
